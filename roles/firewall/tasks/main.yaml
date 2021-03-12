@@ -1,0 +1,16 @@
+---
+- name: Open Designated firewall ports
+  firewalld:
+    state: enabled  # aka. OPEN
+    port: "{{ item }}"
+    permanent: true
+    immediate: false
+    zone: public
+  loop: "{{ firewall_ports }}"
+  when: firewall_ports is defined and firewall_ports | length > 0
+
+- name: Reload firewalld
+  service:
+    name: firewalld
+    state: reloaded
+...

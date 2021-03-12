@@ -1,0 +1,11 @@
+.kitchen/
+license*.json
+*.pyc
+__pycache__/
+.vendor
+.bundle
+Converging
+TODO
+.idea/
+elasticsearch.iml
+!/vars/RedHat.yml

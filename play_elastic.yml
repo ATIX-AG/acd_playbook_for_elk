@@ -1,0 +1,47 @@
+---
+- hosts: all
+  pretasks:
+    - name: Ensure Centos 7
+      assert:
+        that:
+          - ansible_distribution == 'CentOS'
+          - ansible_distribution_version is version('7', '>=')
+          - ansible_distribution_version is version('8', '<)
+        msg: "Unfortunately for now only CentOS-7 is supported."
+
+- hosts: elastic_nodes
+  roles:
+    - role: os_repos
+      tags:
+        - bake
+        - elk
+
+    - role: firewall
+      tags:
+        - bake
+        - elk
+
+- hosts: kibana_nodes
+  roles:
+    - role: os_repos
+      tags:
+        - bake
+        - kibana
+
+    - role: firewall
+      tags:
+        - bake
+        - kibana
+
+- hosts: elastic_nodes
+  roles:
+    - role: elasticsearch
+      tags:
+        - elk
+
+- hosts: kibana_nodes
+  roles:
+    - role: kibana
+      tags:
+        - kibana
+...

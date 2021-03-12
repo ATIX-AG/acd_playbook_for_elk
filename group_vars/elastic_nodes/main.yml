@@ -1,0 +1,12 @@
+---
+es_config_cluster_name: "test_cluster"
+es_config_initial_master_nodes: "{{ groups['elastic_nodes'] }}"
+es_config_discovery_seed_hosts: "{{ groups['elastic_nodes'] | amend_list_items(postfix=':9300') }}"
+es_config_network_host: "0.0.0.0"
+es_heap_size: "1g"
+es_config_node_data: true
+es_config_node_master: true
+firewall_ports: ["9200/tcp", "9300/tcp"]
+es_self_monitoring: true
+
+...
