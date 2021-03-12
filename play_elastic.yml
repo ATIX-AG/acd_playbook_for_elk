@@ -6,7 +6,7 @@
         that:
           - ansible_distribution == 'CentOS'
           - ansible_distribution_version is version('7', '>=')
-          - ansible_distribution_version is version('8', '<)
+          - ansible_distribution_version is version('8', '<')
         msg: "Unfortunately for now only CentOS-7 is supported."
 
 - hosts: elastic_nodes
