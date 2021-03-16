@@ -59,10 +59,13 @@ This playbook will add an upstream repository for
 Elasticsearch and Kibana unless you set variables to prevent it:
 
 As stated in <cite>[Ansible-Elasticsearch][1]</cite>.
-> "`es_use_repository` Setting this to `false` will stop Ansible from using the official Elastic package from any repositoryconfigured on the system
+> "`es_use_repository` Setting this to `false` will stop Ansible from using the official Elastic package from any repository configured on the system
 
 > `es_add_repository` Setting this to `false` will stop Ansible from adding the official Elastic package repositories (if 
 > es_use_repository is true) if you want to use a repo already present"
+
+
+`es_add_repository` set via `group_vars/all.yml` will also influence the existence of the Elasticsearch/Kibana repository on Kibana hosts. The default value inside the `kibana` role is `true`.
 
 
 [1]: https://github.com/elastic/ansible-elasticsearch
