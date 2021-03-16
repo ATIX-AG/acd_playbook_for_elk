@@ -47,8 +47,6 @@ group_vars/kibana/all/main.yml:
 ```yaml
 ---
 kibana_elasticsearch_url: "{{ groups['elastic_nodes'] | amend_list_items(postfix=':9200',prefix='http://') }}"
-kibana_elasticsearch_username: "admin"
-kibana_elasticsearch_password: "atix2021"
 firewall_ports:
   - "5601/tcp"
 ...
