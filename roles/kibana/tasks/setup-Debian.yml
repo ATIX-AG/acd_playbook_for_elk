@@ -1,7 +1,0 @@
----
-- name: Ensure dependencies are installed.
-  apt:
-    name:
-      - apt-transport-https
-      - gnupg2
-    state: present

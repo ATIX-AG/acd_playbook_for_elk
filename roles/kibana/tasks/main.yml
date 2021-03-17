@@ -1,4 +1,8 @@
 ---
+- name: Add Repositories
+  include_tasks: "setup-{{ ansible_os_family }}.yml"
+  when: es_add_repository
+
 - name: Install Kibana.
   package:
     name: "{{ kibana_package }}"
