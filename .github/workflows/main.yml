@@ -1,0 +1,51 @@
+---
+name: Ansible lint
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    env:
+      ANSIBLE_FORCE_COLOR: 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        python-version: [3.6]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          # pip has issue
+          #python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Show environment
+        run: |
+          ansible --version
+          yamllint --version
+          ansible-lint --version
+      # checks before external roles
+      - name: Lint with flake8
+        run: |
+          flake8 --exclude=./roles/elasticsearch/
+
+      - name: Test with yamllint
+        run: |
+          yamllint .
+      - name: Run Ansible lint
+        run: |
+          ansible-lint -p --nocolor -x 204 .
+      - name: Check syntax
+        run: |
+          ansible-playbook play_elastic.yml --syntax-check

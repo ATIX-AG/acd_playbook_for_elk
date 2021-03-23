@@ -1,0 +1,29 @@
+---
+extends: default
+ignore: |
+  .github
+  meta*
+  roles/elasticsearch/
+rules:
+  comments:
+    level: error
+  comments-indentation:
+    level: error
+    ignore: |
+      meta/main.yml
+      meta/main.yaml
+  document-start:
+    level: error
+  empty-values: enable
+  indentation:
+    spaces: 2
+    check-multi-line-strings: true
+    ignore: |
+      meta/main.yml
+      meta/main.yaml
+  line-length:
+    max: 180
+    allow-non-breakable-inline-mappings: true
+  truthy:
+    level: error
+...
