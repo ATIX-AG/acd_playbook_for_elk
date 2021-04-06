@@ -1,5 +1,5 @@
 ---
-name: Ansible lint
+name: lint
 
 on:
   push:
