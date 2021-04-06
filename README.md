@@ -1,3 +1,5 @@
+[![build status](https://github.com/ATIX-AG/acd_playbook_for_elk/workflows/lint/badge.svg)](https://github.com/ATIX-AG/acd_playbook_for_elk/actions)
+
 ## Ansible Playbook for Foreman ACD
 
 ## Operating Systems
